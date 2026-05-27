@@ -1,0 +1,1 @@
+cd $DEV_APP && npm install $@

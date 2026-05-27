@@ -1,0 +1,20 @@
+{
+  "name": "portable",
+  "version": "0.1.0",
+  "description": "Easy to work Frontend template for Web Apps",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node core/build.mjs dev",
+    "start": "node core/build.mjs start",
+    "build": "node core/build.mjs build"
+  },
+  "dependencies": {
+    "@attaditya/iconoir-preact": "^7.11.0",
+    "preact": "^10.27.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.3",
+    "typescript": "^5.8.3"
+  }
+}

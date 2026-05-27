@@ -1,0 +1,1 @@
+Installs dependencies using npm.
