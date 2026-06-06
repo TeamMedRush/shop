@@ -1,0 +1,18 @@
+.footer {
+  background-color: var(--color-focus);
+  color: var(--color-white);
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.footer-content {
+  padding: 2rem 8rem;
+}
+
+.footer > * {
+  flex: 1;
+}
+

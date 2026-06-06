@@ -1,6 +1,7 @@
-import { ComponentChildren, createContext } from "preact";
 import { useCallback, useContext, useRef } from "preact/hooks";
+import { ComponentChildren, createContext } from "preact";
 
+import { APIS } from "@data/api";
 import {
   type Callback,
   type SubscriptionMeta,
@@ -13,8 +14,14 @@ type DataContextSubscribe = (
   callback: Callback,
 ) => Unsubscribe;
 
-  interface DataContextMeta {
+interface DataDump {
+  [apiId: string]: unknown;
+}
+
+interface DataContextMeta {
+  dataDump: DataDump;
   subscribe: DataContextSubscribe;
+  refreshApi: (apiId: string) => Promise<void>;
 }
 
 interface Subscriptions {
@@ -23,24 +30,36 @@ interface Subscriptions {
 
 function createDataContext() {
   const DataContext = createContext<DataContextMeta | null>(null);
-  
-  function DataProvider({ children }: { children: ComponentChildren }) {
-    const subscriptions = useRef<Subscriptions>({}).current;
-    
-    const subscribe = useCallback<DataContextSubscribe>((apiId, callback) => {
-      if (!subscriptions[apiId])
-        subscriptions[apiId] = useSubscription();
 
+  function DataProvider({ children }: { children: ComponentChildren }) {
+    const dataDump = useRef<DataDump>({}).current;
+    const subscriptions = useRef<Subscriptions>({}).current;
+
+    for (const apiId in APIS)
+      subscriptions[apiId] = useSubscription();
+
+    const subscribe = useCallback<DataContextSubscribe>((apiId, callback) => {
       return subscriptions[apiId].subscribe(callback);
     }, []);
 
-    const values = { subscribe };
-    
+    const refreshApi = useCallback(async (apiId: string, ...params: any[]) => {
+      if (!(apiId in APIS)) return;
+      const { caller } = APIS[apiId];
+      dataDump[apiId] = await caller(...params);
+      subscriptions[apiId].notify();
+    }, []);
+
+    const values = {
+      dataDump,
+      subscribe,
+      refreshApi,
+    };
+
     return <DataContext.Provider value={values}>
       {children}
     </DataContext.Provider>
   }
-  
+
   function useData(): DataContextMeta {
     return useContext(DataContext)!;
   }

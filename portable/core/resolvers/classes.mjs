@@ -77,7 +77,7 @@ async function buildObjectFile(resolvedClassNames, templateLang="js") {
 
   const fileContent = templates[templateLang].replace(
     '[[CLASS_NAMES]]',
-    Array.from(new Set(resolvedClassNames)).map(
+    Array.from(new Set(resolvedClassNames)).sort().map(
       name => `  '${name}': '${name}'`
     ).join(',\n')
   );
@@ -134,7 +134,7 @@ export async function matchComponentsCssFiles(componentsDir, cssDir) {
     if (!validExtensions.some(ext => component.endsWith(ext)))
       continue;
 
-    const dir = component.split(/[/\\]/g);
+    const dir = component.split('/');
     const name = dir.pop().split('.')[0];
     
     let indexRef = indexing;

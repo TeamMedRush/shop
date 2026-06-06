@@ -1,66 +1,37 @@
-import { type ShopRouteState, HomeView } from "@components/view/home-view";
+import { Footer } from "@components/block/footer";
+import { CartButton } from "@components/kit/cart-button";
+import { Menu } from "@components/kit/menu";
+import { MenuBrand } from "@components/kit/menu-brand";
+import { ScrollTopButton } from "@components/kit/scroll-top-button";
+import { ThemeButton } from "@components/kit/theme-button";
+import { Container } from "@components/ui/structure/container";
+import { Top } from "@components/ui/structure/top";
+import { HomeView } from "@components/view/home-view";
 import { useForwarded } from "@utils/path";
+import { type LayoutProps, useRouter } from "@utils/router";
 
-function resolveRoute(forwarded: string[]): ShopRouteState {
-  const path = `/${forwarded.join("/")}`;
+function Layout({ dynamic, children }: LayoutProps) {
+  return <>
+    {children}
+    {(!children && !dynamic) && (<Container>
+      <Menu position="top-left">
+        <MenuBrand />
+      </Menu>
 
-  if (forwarded.length === 0) {
-    return { page: "home", path: "/" };
-  }
+      <Menu position="top-right">
+        <ThemeButton />
+        <CartButton />
+        <ScrollTopButton />
+      </Menu>
 
-  if (forwarded.length === 1) {
-    const segment = forwarded[0];
-
-    if (segment === "login") {
-      return { page: "login", path };
-    }
-
-    if (segment === "register") {
-      return { page: "register", path };
-    }
-
-    if (segment === "products") {
-      return { page: "products", path };
-    }
-
-    if (segment === "cart") {
-      return { page: "cart", path };
-    }
-
-    if (segment === "checkout") {
-      return { page: "checkout", path };
-    }
-
-    if (segment === "orders") {
-      return { page: "orders", path };
-    }
-
-    if (segment === "profile") {
-      return { page: "profile", path };
-    }
-  }
-
-  if (forwarded.length === 2 && forwarded[0] === "products") {
-    return {
-      page: "product-detail",
-      path,
-      productId: forwarded[1],
-    };
-  }
-
-  if (forwarded.length === 2 && forwarded[0] === "orders") {
-    return {
-      page: "order-detail",
-      path,
-      orderId: forwarded[1],
-    };
-  }
-
-  return { page: "not-found", path };
+      <Top />
+      <HomeView />
+      <Footer />
+    </Container>)}
+  </>;
 }
 
 export function HomePage() {
-  const forwarded = useForwarded();
-  return <HomeView route={resolveRoute(forwarded)} />;
+  return useRouter(useForwarded(), Layout, {});
 }
 

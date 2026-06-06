@@ -1,4 +1,5 @@
 import { useCallback, useRef } from "preact/hooks";
+
 import { randomId } from "@utils/generators";
 
 export type Callback = () => void;

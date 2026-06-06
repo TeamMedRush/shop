@@ -1,0 +1,70 @@
+.medicine-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 0.125rem solid var(--color-focus);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.medicine-card-image {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  border: 0.125rem dashed var(--color-focus);
+  border-radius: 0.75rem;
+}
+
+.medicine-card-image-placeholder {
+  width: 75%;
+  height: 75%;
+  color: var(--color-shade);
+}
+
+.medicine-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.medicine-card-price {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.medicine-card-price-striked {
+  text-decoration: line-through;
+  color: var(--color-shade);
+}
+
+.medicine-card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.medicine-card-action {
+  flex: 0;
+}
+
+.medicine-card-action-full {
+  flex: 1;
+}
+
+.medicine-card-action-secondary {
+  background: var(--color-shine);
+  border: 0.125rem solid var(--color-focus);
+  color: var(--color-shade);
+}
+
+.medicine-card-action-secondary:hover {
+  background: color(
+    from var(--color-focus) xyz x y z / 0.25
+  );
+}
+

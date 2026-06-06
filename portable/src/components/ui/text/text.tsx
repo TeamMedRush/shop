@@ -1,5 +1,6 @@
-import { useClasses } from '@styles';
 import { ComponentChildren } from 'preact';
+
+import { useClasses } from '@styles';
 
 interface TextProps {
   className?: string;

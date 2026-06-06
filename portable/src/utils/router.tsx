@@ -21,7 +21,7 @@ export function useRouter(
 ) {
   const path = forwarded[0];
   const Page = routes[path];
-  
+
   if (!Page)
     return <Layout
       dynamic={path}

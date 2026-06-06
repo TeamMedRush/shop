@@ -1,8 +1,8 @@
+import * as iconoir from "@attaditya/iconoir-preact/regular";
 import { Container } from "@components/ui/structure/container";
 import { Heading } from "@components/ui/text/heading";
 import { Text } from "@components/ui/text/text";
 import { useClasses } from "@styles";
-import * as iconoir from "@attaditya/iconoir-preact/regular";
 
 interface InfoletProps {
   icon: keyof typeof iconoir;

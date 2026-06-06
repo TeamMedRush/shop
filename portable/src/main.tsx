@@ -1,15 +1,13 @@
 import { render } from 'preact';
-import { AuthProvider } from '@contexts/auth-context';
-import { CartProvider } from '@contexts/cart-context';
+
+import { DataProvider } from '@data/index';
 import { HomePage } from '@routes/home';
 
 function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <HomePage />
-      </CartProvider>
-    </AuthProvider>
+    <DataProvider>
+      <HomePage />
+    </DataProvider>
   );
 }
 

@@ -1,10 +1,10 @@
+import * as iconoir from "@attaditya/iconoir-preact/regular";
+import { ArrowUpRightRegular, LinkRegular } from "@attaditya/iconoir-preact";
 import { Link } from "@components/ui/interactive/link";
 import { Container } from "@components/ui/structure/container";
 import { Heading } from "@components/ui/text/heading";
 import { Text } from "@components/ui/text/text";
 import { useClasses } from "@styles";
-import { ArrowUpRightRegular, LinkRegular } from "@attaditya/iconoir-preact";
-import * as iconoir from "@attaditya/iconoir-preact/regular";
 
 interface LinkletProps {
   icon?: keyof typeof iconoir;
@@ -45,7 +45,6 @@ export function Linklet({
 
         <Container className={useClasses("linklet-hover")}>
           <RefIcon className={useClasses("linklet-hover-icon")} />
-
           <Text className={useClasses("linklet-hover-url")}>
             {url}
           </Text>

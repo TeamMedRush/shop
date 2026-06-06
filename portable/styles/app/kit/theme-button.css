@@ -1,0 +1,34 @@
+@keyframes bubble {
+  0% {
+    width: 0vmax;
+    height: 0vmax;
+    opacity: 1;
+  }
+  80%{
+    width: 300vmax;
+    height: 300vmax;
+    opacity: 1;
+  }
+  100% {
+    width: 300vmax;
+    height: 300vmax;
+    opacity: 0;
+  }
+}
+
+.theme-bubble {
+  position: fixed;
+  display: block;
+  top: 3.5rem;
+  right: 3.5rem;
+  width: 0vmax;
+  height: 0vmax;
+  border-radius: 50%;
+  background-color: var(--color-shine);
+  pointer-events: none;
+  z-index: 1000;
+  border: 0.125rem solid var(--color-focus);
+  animation: bubble 1.5s ease-in-out forwards;
+  transform: translate(50%, -50%);
+}
+

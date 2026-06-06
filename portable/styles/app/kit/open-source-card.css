@@ -1,0 +1,144 @@
+@keyframes fly-pulse {
+  0% {
+    transform: translate(-110%, 110%) scale(0.95) rotate(45deg);
+  }
+  40%, 60% {
+    transform: translate(0, 0) scale(0.95) rotate(45deg);
+  }
+  50% {
+    transform: translate(0, 0) scale(1.05) rotate(45deg);
+  }
+  100% {
+    transform: translate(110%, -110%) scale(0.95) rotate(45deg);
+  }
+}
+
+@keyframes jiggle {
+  0%, 30%, 70%, 100% {
+    transform: rotate(0deg);
+  }
+  35%, 45%, 55%, 65% {
+    transform: rotate(3deg);
+  }
+  40%, 50%, 60% {
+    transform: rotate(-3deg);
+  }
+}
+
+.open-source-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: var(--color-focus);
+  border: 0.5rem solid var(--color-focus);
+  border-radius: 1.5rem;
+  gap: 0.5rem;
+}
+
+.open-source-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.open-source-card-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--color-focus);
+}
+
+.fly-pulse {
+  animation: fly-pulse 3s ease-in-out infinite !important;
+}
+
+.jiggle {
+  animation: jiggle 3s ease-in-out infinite !important;
+}
+
+.open-source-card-content {
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.open-source-card-meta {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.open-source-card-repo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.open-source-card-info {
+  font-size: 1rem;
+}
+
+.open-source-card-mine-container {
+  background-color: var(--color-white);
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+
+.open-source-card-mine {
+  font-size: 1rem;
+  color: var(--color-shade);
+}
+
+.open-source-card-actions {
+  gap: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.open-source-card-actions > * {
+  background-color: var(--color-white);
+  border-radius: 1rem;
+  text-wrap: nowrap;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .open-source-card {
+    grid-template-columns: 1fr;
+  }
+
+  .open-source-card-meta {
+    padding-top: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .open-source-card-icon {
+    max-height: 15rem;
+  }
+
+  .open-source-card-repo-text {
+    font-size: 1rem;
+  }
+
+  .open-source-card-title {
+    font-size: 1.5rem;
+  }
+
+  .open-source-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .open-source-card-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
