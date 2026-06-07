@@ -1,5 +1,6 @@
 .menu-button {
   pointer-events: auto;
+  position: relative;
   cursor: pointer;
   padding: 0.75rem;
   border-radius: 0.5rem;
@@ -22,5 +23,16 @@
 .menu-button:disabled {
   cursor: not-allowed;
   scale: 0;
+}
+
+.menu-button-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-focus);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
 }
 

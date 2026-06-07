@@ -4,13 +4,19 @@ export interface Medicine {
   imageUrl?: string;
 
   price: {
+    original?: number;
+    final: number;
+
     currency?: {
       prefix?: string;
       suffix?: string;
     };
-
-    original?: number;
-    final: number;
   }
+}
+
+export interface Category {
+  id: string;
+  title: string;
+  medicines: Medicine[];
 }
 

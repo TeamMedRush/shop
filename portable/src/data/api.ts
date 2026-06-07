@@ -1,10 +1,6 @@
 import { medicinesByCategory } from "@api/medicine";
 
-export const APIS: {
-  [apiId: string]: {
-    caller: (...params: any[]) => unknown;
-  };
-} = {
+export const APIS = {
   "medicinesByCategory": {
     caller: (category: string) => medicinesByCategory(category),
   }

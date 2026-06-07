@@ -1,0 +1,32 @@
+.cart-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cart-action {
+  flex: 0;
+}
+
+.cart-action-full {
+  flex: 1;
+}
+
+.cart-action-secondary {
+  background: var(--color-shine);
+  border: 0.125rem solid var(--color-focus);
+  color: var(--color-shade);
+}
+
+.cart-action-secondary:not(:disabled):hover {
+  background: color(
+    from var(--color-focus) xyz x y z / 0.25
+  );
+}
+
+.cart-action-secondary:disabled:hover {
+  cursor: default;
+  background: color(
+    from var(--color-focus) xyz x y z / 0
+  );
+}
+

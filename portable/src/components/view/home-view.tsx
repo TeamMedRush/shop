@@ -1,4 +1,4 @@
-import { Category } from "@components/block/category";
+import { CategorySection } from "@components/block/category";
 import { Hero } from "@components/block/hero";
 import { Navbar } from "@components/block/navbar";
 import { MedicineProvider } from "@contexts/medicine";
@@ -9,19 +9,23 @@ export function HomeView() {
       <Hero />
       <Navbar />
       <MedicineProvider>
-        <Category
+        <CategorySection
+          id="most-bought"
           title="Most Bought"
         />
 
-        <Category
+        <CategorySection
+          id="first-aid"
           title="First Aid"
         />
 
-        <Category
+        <CategorySection
+          id="essentials"
           title="Essentials"
         />
 
-        <Category
+        <CategorySection
+          id="supplements"
           title="Supplements"
         />
       </MedicineProvider>

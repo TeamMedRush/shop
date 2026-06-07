@@ -1,84 +1,70 @@
 import { PharmacyCrossTagRegular } from "@attaditya/iconoir-preact";
-import { Button } from "@components/ui/interactive/button";
+import { CartActions } from "@components/block/cart-actions";
 import { Container } from "@components/ui/structure/container";
 import { Heading } from "@components/ui/text/heading";
 import { Text } from "@components/ui/text/text";
+import { Medicine } from "@interfaces/medince";
 import { useClasses } from "@styles";
 
 interface MedicineCardProps {
-  name: string;
-  imageUrl?: string;
-
-  price: {
-    currency?: {
-      prefix?: string;
-      suffix?: string;
-    };
-
-    original?: number;
-    final: number;
-  }
+  medicine: Medicine;
 }
 
-export function MedicineCard({
-  name,
-  imageUrl,
-  price: {
-    currency = {
-      prefix: "",
-      suffix: "INR",
-    },
-    original,
-    final
-  }
-}: MedicineCardProps) {
+export function MedicineCard({ medicine }: MedicineCardProps) {
   return (
     <Container className={useClasses("medicine-card")}>
       <Container className={useClasses("medicine-card-image")}>
-        {imageUrl && <img src={imageUrl} alt={name} />}
-        {!imageUrl && <PharmacyCrossTagRegular
+        {medicine.imageUrl && <img
+          src={medicine.imageUrl}
+          alt={medicine.name}
+        />}
+
+        {!medicine.imageUrl && <PharmacyCrossTagRegular
           className={useClasses("medicine-card-image-placeholder")}
         />}
       </Container>
 
       <Container className={useClasses("medicine-card-content")}>
-        <Heading size="medium">
-          {name}
+        <Heading size="small" className={useClasses("medicine-card-name")}>
+          {medicine.name}
         </Heading>
 
         <Container className={useClasses("medicine-card-price")}>
-          <Text>
-            {currency.prefix}
+          {medicine.price.currency?.prefix && <Text
+            className={useClasses("medicine-card-price-text")}
+          >
+            {medicine.price.currency.prefix}
+          </Text>}
+
+          {medicine.price.original
+            && medicine.price.original !== medicine.price.final
+
+            && (
+            <Text
+              className={useClasses(
+                "medicine-card-price-text",
+                "medicine-card-price-striked"
+              )}
+            >
+
+            {medicine.price.original}
+          </Text>)}
+
+          <Text className={useClasses("medicine-card-price-text")}>
+            {medicine.price.final}
           </Text>
 
-          <Text className={useClasses("medicine-card-price-striked")}>
-            {original}
-          </Text>
-
-          <Text>
-            {final}
-          </Text>
-
-          <Text>
-            {currency.suffix}
-          </Text>
+          {medicine.price.currency?.suffix && <Text
+            className={useClasses("medicine-card-price-text")}
+          >
+            {medicine.price.currency.suffix}
+          </Text>}
         </Container>
       </Container>
 
-      <Container className={useClasses("medicine-card-actions")}>
-        <Button
-          className={useClasses(
-            "medicine-card-action-full",
-            "medicine-card-action-secondary",
-          )}
-        >
-          View Details
-        </Button>
-
-        <Button className={useClasses("medicine-card-action-full")}>
-          Add to Cart
-        </Button>
-      </Container>
+      <CartActions
+        medicine={medicine}
+      />
     </Container>
   );
 }

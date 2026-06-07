@@ -1,41 +1,37 @@
-import { useCallback, useContext, useEffect, useState } from "preact/hooks";
+import { useCallback, useContext, useRef } from "preact/hooks";
 import { ComponentChildren, createContext } from "preact";
 
-import { useData } from "@data/index";
+import { medicinesByCategory } from "@api/medicine";
+import { Category } from "@interfaces/medince";
+
+type CategoryMap = {
+  [categoryId: string]: Category;
+}
 
 interface MedicineMeta {
-  ready: boolean;
+  getCategoryData: (categoryId: string) => Promise<Category | undefined>;
 }
 
 function createMedicineContext() {
   const MedicineContext = createContext<MedicineMeta | null>(null);
 
   function MedicineProvider({ children }: { children: ComponentChildren }) {
-    const { dataDump, subscribe, refreshApi } = useData();
-    const [subscribed, setSubscribed] = useState(false);
-    const [ready, setReady] = useState(false);
+    const categories = useRef<CategoryMap>({}).current;
 
-    const processData = useCallback(() => {
-      setReady(true);
-    }, [dataDump]);
+    const getCategoryData = useCallback(async (categoryId: string) => {
+      if (categories[categoryId])
+        return categories[categoryId];
 
-    useEffect(() => {
-      setSubscribed(true);
-      const unsubscribe = subscribe("", () => {});
+      const categoryData = await medicinesByCategory(categoryId);
 
-      return () => {
-        setSubscribed(false);
-        unsubscribe();
-      };
-    }, [processData, subscribe]);
+      if (categoryData)
+        categories[categoryId] = categoryData;
 
-    useEffect(() => {
-      if (!subscribed) return;
-      refreshApi("cpStatLeetcode");
-    }, [subscribed]);
+      return categories[categoryId];
+    }, [categories]);
 
     const value = {
-      ready,
+      getCategoryData,
     };
 
     return <MedicineContext.Provider value={value}>

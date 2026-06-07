@@ -9,6 +9,8 @@ import {
   useSubscription,
 } from "@utils/subscription";
 
+type ApiKey = keyof typeof APIS;
+
 type DataContextSubscribe = (
   apiId: string,
   callback: Callback,
@@ -21,7 +23,7 @@ interface DataDump {
 interface DataContextMeta {
   dataDump: DataDump;
   subscribe: DataContextSubscribe;
-  refreshApi: (apiId: string) => Promise<void>;
+  refreshApi: (apiId: ApiKey, params?: any[]) => Promise<void>;
 }
 
 interface Subscriptions {
@@ -42,9 +44,15 @@ function createDataContext() {
       return subscriptions[apiId].subscribe(callback);
     }, []);
 
-    const refreshApi = useCallback(async (apiId: string, ...params: any[]) => {
+    const refreshApi = useCallback(async (
+      apiId: ApiKey,
+      params: any[] = [],
+    ) => {
       if (!(apiId in APIS)) return;
-      const { caller } = APIS[apiId];
+      const { caller } = APIS[apiId] as {
+        caller: (...params: any[]) => unknown
+      };
+
       dataDump[apiId] = await caller(...params);
       subscriptions[apiId].notify();
     }, []);

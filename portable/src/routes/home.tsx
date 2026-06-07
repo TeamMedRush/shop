@@ -7,6 +7,7 @@ import { ThemeButton } from "@components/kit/theme-button";
 import { Container } from "@components/ui/structure/container";
 import { Top } from "@components/ui/structure/top";
 import { HomeView } from "@components/view/home-view";
+import { CartProvider } from "@contexts/cart";
 import { useForwarded } from "@utils/path";
 import { type LayoutProps, useRouter } from "@utils/router";
 
@@ -18,15 +19,17 @@ function Layout({ dynamic, children }: LayoutProps) {
         <MenuBrand />
       </Menu>
 
-      <Menu position="top-right">
-        <ThemeButton />
-        <CartButton />
-        <ScrollTopButton />
-      </Menu>
+      <CartProvider>
+        <Menu position="top-right">
+          <ThemeButton />
+          <CartButton />
+          <ScrollTopButton />
+        </Menu>
 
-      <Top />
-      <HomeView />
-      <Footer />
+        <Top />
+        <HomeView />
+        <Footer />
+      </CartProvider>
     </Container>)}
   </>;
 }

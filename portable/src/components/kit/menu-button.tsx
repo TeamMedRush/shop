@@ -7,9 +7,15 @@ interface MenuButtonProps {
   icon: keyof typeof iconoir;
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  badge?: number;
 }
 
-export function MenuButton({ icon, disabled, onClick }: MenuButtonProps) {
+export function MenuButton({
+  icon,
+  disabled,
+  onClick,
+  badge,
+}: MenuButtonProps & { badge?: number }) {
   const IconComponent = iconoir[icon] || (() => null);
 
   return (<>
@@ -19,6 +25,12 @@ export function MenuButton({ icon, disabled, onClick }: MenuButtonProps) {
       className={useClasses("menu-button")}
     >
       <IconComponent />
+
+      {(badge !== undefined) && (badge > 0) && (
+        <span className={useClasses("menu-button-badge")}>
+          {badge}
+        </span>
+      )}
     </button>
   </>);
 }
