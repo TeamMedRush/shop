@@ -30,5 +30,6 @@
   border: 0.125rem solid var(--color-focus);
   animation: bubble 1.5s ease-in-out forwards;
   transform: translate(50%, -50%);
+  transition: background-color 0.2s ease-in-out;
 }
 
