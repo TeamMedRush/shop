@@ -15,7 +15,7 @@ export function Checkout() {
   ), 0);
 
   return (
-    <Section>
+    <Section className={useClasses("checkout")}>
       <Heading size="large">
         Checkout
       </Heading>
