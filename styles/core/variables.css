@@ -1,0 +1,22 @@
+:root {
+  --color-white: oklch(100.00% 0.0000 0.000);
+  --color-black: oklch(0.0000% 0.0000 0.000);
+  --color-success: oklch(70.000% 0.2000 120.000);
+  --color-danger: oklch(58.27% 0.23912 30.000);
+  --color-warning: oklch(80.000% 0.2000 90.000);
+
+  --font-sans: sans;
+  --font-curs: curs;
+  --font-mono: mono;
+  
+  --color-shine: oklch(100.000% 0.0250 42.000);
+  --color-shade: oklch(10.0000% 0.1000 42.000);
+  --color-focus: oklch(70.216% 0.18922 22.207);
+}
+
+:root.dark {
+  --color-shade: oklch(100.000% 0.0250 42.000);
+  --color-shine: oklch(20.019% 0.00002 271.152);
+  --color-focus: oklch(70.216% 0.18922 22.207);
+}
+

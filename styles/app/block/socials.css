@@ -1,0 +1,7 @@
+.socials-linklets {
+  display: flex;
+  padding-top: 1rem;
+  gap: 1rem;
+  align-items: start;
+}
+

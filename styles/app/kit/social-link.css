@@ -1,0 +1,82 @@
+.social-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 0.75rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: color(
+    from var(--color-focus) xyz x y z / 0.1
+  );
+}
+
+.social-link:hover {
+  background-color: color(
+    from var(--color-focus) xyz x y z / 0.1
+  );
+}
+
+.social-link-icon-container {
+  border-radius: 20rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link-icon {
+  padding: 1rem;
+  font-size: 3rem;
+  flex-shrink: 0;
+  padding: 0.75rem;
+  color: var(--color-shade);
+}
+
+.social-link-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  right: 100%;
+  padding: 1rem;
+  background-color: var(--color-focus);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  transition:
+    top 0.3s ease,
+    right 0.3s ease;
+}
+
+.social-link:hover .social-link-hover {
+  top: 0;
+  right: 0;
+}
+
+.social-link-hover-icon {
+  font-size: 2rem;
+  color: var(--color-white);
+}
+
+.social-link-hover-url {
+  font-size: 1.25rem;
+  color: var(--color-white);
+  line-break: anywhere;
+  word-break: break-all;
+  text-align: center;
+  text-wrap-style: balance;
+}
+
+@media (max-width: 800px) {
+  .social-link {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
