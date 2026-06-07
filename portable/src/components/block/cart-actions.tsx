@@ -29,10 +29,10 @@ export function CartActions({ medicine }: CartActionsProps) {
 
       {entry && entry.count > 0 && <>
         <Button
-          className={useClasses("cart-action")}
+          className={useClasses("cart-action-square")}
           onClick={() => removeFromCart(medicine.id)}
         >
-          -
+          <MinusRegular className={useClasses("cart-action-icon")} />
         </Button>
 
         <Button
@@ -47,10 +47,10 @@ export function CartActions({ medicine }: CartActionsProps) {
         </Button>
 
         <Button
-          className={useClasses("cart-action")}
+          className={useClasses("cart-action-square")}
           onClick={() => addToCart(medicine)}
         >
-          +
+          <PlusRegular className={useClasses("cart-action-icon")} />
         </Button>
       </>}
     </Container>
