@@ -35,6 +35,8 @@ const classNames = {
   'education-card-icon-container': 'education-card-icon-container',
   'education-card-separator': 'education-card-separator',
   'education-card-title': 'education-card-title',
+  'empty-checkout': 'empty-checkout',
+  'empty-checkout-icon': 'empty-checkout-icon',
   'fly-pulse': 'fly-pulse',
   'footer': 'footer',
   'footer-content': 'footer-content',

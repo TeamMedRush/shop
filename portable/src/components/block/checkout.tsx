@@ -1,4 +1,5 @@
 import { CheckoutItem } from "@components/block/checkout-item";
+import { EmptyCheckout } from "@components/block/empty-checkout";
 import { Section } from "@components/kit/section";
 import { Button } from "@components/ui/interactive/button";
 import { Container } from "@components/ui/structure/container";
@@ -22,6 +23,10 @@ export function Checkout() {
 
       <Container className={useClasses("checkout-details")}>
         <Container className={useClasses("checkout-items")}>
+          {!Object.keys(entries).length && (
+            <EmptyCheckout />
+          )}
+
           {Object.values(entries).map(entry => (
             <CheckoutItem
               key={entry.details.id}
